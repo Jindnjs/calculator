@@ -15,7 +15,7 @@ public class CalculatorMain {
 
         /*연산기호 검사에 쓰일 배열*/
         char [] operators = {'+', '-', '*', '/'};
-
+        char operator;
         /*연산 기호 입력*/
         /*연산기호가 + - * / 가 아니면 다시 입력받기*/
         while(true) {
@@ -24,7 +24,7 @@ public class CalculatorMain {
 
             /*연산자 입력*/
             System.out.print("사칙연산 기호를 입력하세요(+, -, *, /): ");
-            char operator = scanner.next().charAt(0);
+            operator = scanner.next().charAt(0);
             for (char a : operators) {
                 if (operator == a) {
                     flag = true;
@@ -33,6 +33,26 @@ public class CalculatorMain {
             }
             if (flag) {break;}
             System.out.println("(+, -, *, /)만 입력하세요.");
+        }
+
+        /*연산 수행 및 출력*/
+        switch(operator) {
+            case '+':
+                System.out.println("result = " + (firstNum + secondNum));
+                break;
+            case '-':
+                System.out.println("result = " + (firstNum - secondNum));
+                break;
+            case '*':
+                System.out.println("result = " + (firstNum * secondNum));
+                break;
+            case '/':
+                try {
+                    System.out.println("result = " + (firstNum / secondNum));
+                }catch (ArithmeticException e) {
+                    System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                }
+                break;
         }
     }
 
