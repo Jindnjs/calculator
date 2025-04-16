@@ -13,7 +13,27 @@ public class CalculatorMain {
         /*두번쨰 숫자 입력*/
         int secondNum = inputInt(2, scanner);
 
+        /*연산기호 검사에 쓰일 배열*/
+        char [] operators = {'+', '-', '*', '/'};
 
+        /*연산 기호 입력*/
+        /*연산기호가 + - * / 가 아니면 다시 입력받기*/
+        while(true) {
+            /*while 탈출 변수*/
+            boolean flag = false;
+
+            /*연산자 입력*/
+            System.out.print("사칙연산 기호를 입력하세요(+, -, *, /): ");
+            char operator = scanner.next().charAt(0);
+            for (char a : operators) {
+                if (operator == a) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {break;}
+            System.out.println("(+, -, *, /)만 입력하세요.");
+        }
     }
 
     /*
