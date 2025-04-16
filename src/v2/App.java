@@ -7,6 +7,8 @@ public class App {
 
         /*스캐너 객체 선언*/
         Scanner scanner = new Scanner(System.in);
+        /*계산기 객체 선언*/
+        Calculator calculator = new Calculator();
 
         /*무한 반복*/
         while (true) {
@@ -17,6 +19,7 @@ public class App {
 
             /*연산기호 검사에 쓰일 배열*/
             char[] operators = {'+', '-', '*', '/'};
+
             char operator;
             /*연산 기호 입력*/
             /*연산기호가 + - * / 가 아니면 다시 입력받기*/
@@ -43,29 +46,30 @@ public class App {
             }
 
             /*연산 수행 및 출력*/
-            switch (operator) {
-                case '+':
-                    System.out.println("result = " + (firstNum + secondNum));
-                    break;
-                case '-':
-                    System.out.println("result = " + (firstNum - secondNum));
-                    break;
-                case '*':
-                    System.out.println("result = " + (firstNum * secondNum));
-                    break;
-                case '/':
-                    try {
-                        System.out.println("result = " + (firstNum / secondNum));
-                    } catch (ArithmeticException e) {
-                        System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
-                    }
-                    break;
+            try{
+                int result = calculator.calculate(firstNum, secondNum, operator);
+                System.out.println("result = " + result);
+                /*연산결과를 컬렉션에 저장*/
+                calculator.results.add(result);
+            } //0으로 나눈 경우
+            catch (ArithmeticException e) {
+                System.out.println(e.getMessage());
+            } //calculate 메소드에 사칙연산이외의 연산자가 들어간 경우
+            catch (IllegalArgumentException e) {
+                System.out.println("Error : " + e.getMessage());
             }
+            catch (Exception e) {
+                System.out.println("알 수 없는 오류" + e.getMessage());
+            }
+
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료 / 아무거나 입력) : ");
             String input = scanner.nextLine();
             /*입력이 exit이면 while 무한반복문 탈출*/
-            if (input.equals("exit")) {break;}
+            if (input.equals("exit")) {
+                System.out.println("results= "+ calculator.results);
+                break;}
         }
+        scanner.close();
 
     }
 
