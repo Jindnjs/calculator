@@ -50,7 +50,7 @@ public class App {
                 int result = calculator.calculate(firstNum, secondNum, operator);
                 System.out.println("result = " + result);
                 /*연산결과를 컬렉션에 저장*/
-                calculator.results.add(result);
+                calculator.addResult(result);
             } //0으로 나눈 경우
             catch (ArithmeticException e) {
                 System.out.println(e.getMessage());
@@ -62,11 +62,12 @@ public class App {
                 System.out.println("알 수 없는 오류" + e.getMessage());
             }
 
+            /* 저장된 연산 결과 출력 */
+            System.out.println("저장된 연산 값 = " + calculator.getResults());
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료 / 아무거나 입력) : ");
             String input = scanner.nextLine();
             /*입력이 exit이면 while 무한반복문 탈출*/
             if (input.equals("exit")) {
-                System.out.println("results= "+ calculator.results);
                 break;}
         }
         scanner.close();

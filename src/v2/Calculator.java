@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class Calculator {
 
     /* 연산 결과를 저장하는 컬렉션*/
-    public ArrayList<Integer> results;
+    /* 요구사항에 맞게 캡슐화*/
+    private ArrayList<Integer> results;
 
     public Calculator() {
         results = new ArrayList<>();
@@ -23,8 +24,13 @@ public class Calculator {
             case '/':
                 if(secondNum == 0)
                     throw new ArithmeticException("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                return firstNum / secondNum;
         }
         throw new IllegalArgumentException("잘못된 연산자.");
 
     }
+
+    /* Getter / Setter */
+    public ArrayList<Integer> getResults() {return results;}
+    public void addResult(int result) {this.results.add(result);}
 }
