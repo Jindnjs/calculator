@@ -64,11 +64,23 @@ public class App {
 
             /* 저장된 연산 결과 출력 */
             System.out.println("저장된 연산 값 = " + calculator.getResults());
-            System.out.print("더 계산하시겠습니까? (exit 입력 시 종료 / 아무거나 입력) : ");
+
+            System.out.print("더 계산하시겠습니까? (exit 입력 시 종료 / 아무거나 입력 / del 입력시 데이터 삭제) : ");
             String input = scanner.nextLine();
+
+            /*입력이 del이면 데이터 삭제 */
+            if (input.equals("del")) {
+                calculator.deleteResult(0);
+            }
+
             /*입력이 exit이면 while 무한반복문 탈출*/
             if (input.equals("exit")) {
-                break;}
+                break;
+            }
+
+
+
+            /* 다시 반복 */
         }
         scanner.close();
 

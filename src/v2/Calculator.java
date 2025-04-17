@@ -33,4 +33,10 @@ public class Calculator {
     /* Getter / Setter */
     public ArrayList<Integer> getResults() {return results;}
     public void addResult(int result) {this.results.add(result);}
+
+    /* 컬렉션의 i번째 데이터 삭제하는 메서드*/
+    public void deleteResult(int idx) {
+        this.results.remove(idx);
+        System.out.println("저장된 연산 값 = " + results);
+    }
 }
