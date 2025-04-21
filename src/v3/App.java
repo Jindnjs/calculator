@@ -10,7 +10,7 @@ public class App {
         /*스캐너 객체 선언*/
         Scanner scanner = new Scanner(System.in);
         /*계산기 객체 선언*/
-        Calculator calculator = new Calculator();
+        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
 
         /*무한 반복*/
         while (true) {
@@ -49,10 +49,10 @@ public class App {
 
             /*연산 수행 및 출력*/
             try{
-                int result = calculator.calculate(firstNum, secondNum, operator);
+                int result = arithmeticCalculator.calculate(firstNum, secondNum, operator);
                 System.out.println("result = " + result);
                 /*연산결과를 컬렉션에 저장*/
-                calculator.addResult(result);
+                arithmeticCalculator.addResult(result);
             } //0으로 나눈 경우
             catch (ArithmeticException e) {
                 System.out.println(e.getMessage());
@@ -65,14 +65,14 @@ public class App {
             }
 
             /* 저장된 연산 결과 출력 */
-            System.out.println("저장된 연산 값 = " + calculator.getResults());
+            System.out.println("저장된 연산 값 = " + arithmeticCalculator.getResults());
 
             System.out.print("더 계산하시겠습니까? (exit 입력 시 종료 / 아무거나 입력 / del 입력시 데이터 삭제) : ");
             String input = scanner.nextLine();
 
             /*입력이 del이면 데이터 삭제 */
             if (input.equals("del")) {
-                calculator.deleteResult(0);
+                arithmeticCalculator.deleteResult(0);
             }
 
             /*입력이 exit이면 while 무한반복문 탈출*/
