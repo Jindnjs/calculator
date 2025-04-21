@@ -7,8 +7,6 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
 
-        System.out.println(OperatorType.valueOf("+"));
-        System.out.println("test");
         /*스캐너 객체 선언*/
         Scanner scanner = new Scanner(System.in);
         /*계산기 객체 선언*/
