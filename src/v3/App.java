@@ -10,8 +10,11 @@ public class App {
         /*계산기 객체 선언*/
         ArithmeticCalculator<Double> doubleCalculator = new ArithmeticCalculator<>();
 
+        /* 프로그램 종료 변수 */
+        boolean exitFlag = false;
+
         /*무한 반복*/
-        while (true) {
+        while (!exitFlag) {
             /*첫번째 숫자 입력*/
             double firstNum = inputNum(1, scanner, Double.class);
             /*두번쨰 숫자 입력*/
@@ -47,22 +50,49 @@ public class App {
                     break;
                 }
             }
-            /* 저장된 연산 결과 출력 */
-            System.out.println("저장된 연산 값 = " + doubleCalculator.getResults());
 
-            System.out.print("더 계산하시겠습니까? (exit 입력 시 종료 / 아무거나 입력 / del 입력시 데이터 삭제) : ");
-            String input = scanner.nextLine();
+            /**
+             * 연산 수행후 상태 선택
+             * Enter 입력 -> 반복 진행
+             * del 입력 -> 컬렉션의 마지막 값 삭제
+             * search 입력 -> Scanner로 입력받은 값보다 큰 결과값 출력
+             * exit 입력 -> 종료
+             */
+            while(true){
+                System.out.println("※ 연산 수행 후 다음 동작을 선택하세요:");
+                System.out.println(" - Enter 입력 → 연산 반복 진행");
+                System.out.println(" - del 입력 → 컬렉션의 마지막 값 삭제");
+                System.out.println(" - search 입력 → 입력한 값보다 큰 결과값 출력");
+                System.out.println(" - exit 입력 → 프로그램 종료");
+                System.out.print("입력: ");
 
-            /*입력이 del이면 데이터 삭제 */
-            if (input.equals("del")) {
-                doubleCalculator.deleteResult(0);
+                String input = scanner.nextLine();
+
+                if(input.equals("exit")) {
+                    exitFlag = true;
+                    break;
+                }
+
+                if(input.equals("search")) {
+                    System.out.print("기준값 : ");
+                    Double num1 = scanner.nextDouble();
+                    scanner.nextLine();
+                    System.out.println("결과 = " + doubleCalculator.searchResults(num1));
+                    continue;
+                }
+
+                /*입력이 del이면 데이터 삭제 */
+                if (input.equals("del")) {
+                    doubleCalculator.deleteResult(0);
+                }
+
+                if (input.equals("")) {
+                    break;
+                }
+                else{
+                    System.out.println("4개중 하나만 입력하세요");
+                }
             }
-
-            /*입력이 exit이면 while 무한반복문 탈출*/
-            if (input.equals("exit")) {
-                break;
-            }
-            /* 다시 반복 */
         }
         scanner.close();
     }

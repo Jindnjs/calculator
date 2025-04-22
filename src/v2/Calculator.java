@@ -39,4 +39,6 @@ public class Calculator {
         this.results.remove(idx);
         System.out.println("저장된 연산 값 = " + results);
     }
+
+
 }

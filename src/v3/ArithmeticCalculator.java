@@ -2,6 +2,7 @@ package v3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ArithmeticCalculator <T extends Number> {
 
@@ -64,4 +65,13 @@ public class ArithmeticCalculator <T extends Number> {
         this.results.remove(idx);
         System.out.println("저장된 연산 값 = " + results);
     }
+
+    /* 들어온 숫자보다 큰 값만 반환하는 메서드
+     *  Lambda & Stream을 활용*/
+    public List<T> searchResults(T threshold){
+        return results.stream()
+                    .filter(x -> x.doubleValue() >= threshold.doubleValue())
+                    .collect(Collectors.toList());
+    }
+
 }
